@@ -58,8 +58,9 @@ public class MyLinkedListTester {
 			emptyList.get(0);
 			fail("Check out of bounds");
 		}
-		catch (IndexOutOfBoundsException e) {
-			
+		catch (IndexOutOfBoundsException e) 
+		{
+		     System.out.println("Correct. Index out of bound was expected");	
 		}
 		
 		// test short list, first contents, then out of bounds
@@ -71,14 +72,14 @@ public class MyLinkedListTester {
 			fail("Check out of bounds");
 		}
 		catch (IndexOutOfBoundsException e) {
-		
+			System.out.println("Correct. Index out of bound was expected");
 		}
 		try {
 			shortList.get(2);
 			fail("Check out of bounds");
 		}
 		catch (IndexOutOfBoundsException e) {
-		
+			System.out.println("Correct. out of bound was expected");
 		}
 		// test longer list contents
 		for(int i = 0; i<LONG_LIST_LENGTH; i++ ) {
@@ -109,6 +110,23 @@ public class MyLinkedListTester {
 	@Test
 	public void testRemove()
 	{
+		try {
+			list1.remove(-5);
+			fail("Check out of bounds");
+		}
+		catch (IndexOutOfBoundsException e)
+		{
+		}	
+		try
+		{
+			list1.remove(50);
+			fail("Check out of bounds");
+		}
+		catch (IndexOutOfBoundsException e) {
+		}
+		
+		
+		
 		int a = list1.remove(0);
 		assertEquals("Remove: check a is correct ", 65, a);
 		assertEquals("Remove: check element 0 is correct ", (Integer)21, list1.get(0));
@@ -125,6 +143,25 @@ public class MyLinkedListTester {
 	{
         // TODO: implement this test
 		
+		MyLinkedList<String> testatend = new MyLinkedList<String>();
+		
+		try {
+		       testatend.add(null);
+			   fail("It should throw null pointer exception");
+		}
+		catch (NullPointerException e) 
+		{
+		   //  System.out.println("Correct. Index ou of bound was expected");	
+		}
+		
+		testatend.add("a");
+		
+		System.out.println("List :"+testatend);
+		assertEquals("testing last add func","a",testatend.get(testatend.size-1));
+		
+		testatend.add("b");
+		assertEquals("testing last add func","b",testatend.get(testatend.size-1));
+			
 	}
 
 	
@@ -133,6 +170,22 @@ public class MyLinkedListTester {
 	public void testSize()
 	{
 		// TODO: implement this test
+		
+		MyLinkedList<String> sizetest_list=new MyLinkedList<String>();
+		
+		assertEquals("size check",0,sizetest_list.size);
+		
+		sizetest_list.add("A");
+		sizetest_list.add("B");
+		
+		assertEquals("size check after add",2,sizetest_list.size);
+		
+		sizetest_list.add(2,"D");
+		assertEquals("afer add in middle", 3, sizetest_list.size);
+		
+		sizetest_list.remove(2);
+		assertEquals("after removing",2,sizetest_list.size);
+			
 	}
 
 	
@@ -144,7 +197,53 @@ public class MyLinkedListTester {
 	@Test
 	public void testAddAtIndex()
 	{
+		
+		try {
+			list1.add(-1,50);
+			fail("Check out of bounds");
+		}
+		catch (IndexOutOfBoundsException e) 
+		{
+		     System.out.println("Correct. Index out of bound was expected");	
+		}
+		
+		try {
+			list1.add(10,12);
+			fail("Check out of bounds");
+		}
+		catch (IndexOutOfBoundsException e) 
+		{
+		     System.out.println("Correct. Index out of bound was expected");	
+		}
+		
+		
+		try {
+		       list1.add(2,null);
+			   fail("It should throw null pointer exception");
+		}
+		
+		catch (NullPointerException e) 
+		{
+		   //  System.out.println("Correct. Index ou of bound was expected");	
+		}
+	
+		try {
+		       list1.add(15,3);
+			   //fail("It should throw null pointer exception");
+		}
+		catch (IndexOutOfBoundsException e) 
+		{
+		   //  System.out.println("Correct. Index ou of bound was expected");	
+		}
+		
+		
+		list1.add(2, 100);
         // TODO: implement this test
+		assertEquals("2nd element check", (Integer)100 , list1.get(2));
+		
+		list1.add(2,25);
+		assertEquals("2nd elem . again after one more add. ", (Integer)25, list1.get(2));
+		assertEquals("3nd elem . again after one more add. ", (Integer)100, list1.get(3));
 		
 	}
 	
@@ -152,7 +251,56 @@ public class MyLinkedListTester {
 	@Test
 	public void testSet()
 	{
+		
+		
 	    // TODO: implement this test
+		MyLinkedList<String> settest_list=new MyLinkedList<String>();
+		
+		
+
+		
+		
+		try {
+		       settest_list.set(-2,"test");
+			   fail("It should throw  index out of bound exception");
+		}
+		catch (IndexOutOfBoundsException e) 
+		{
+		   //  System.out.println("Correct. Index ou of bound was expected");	
+		}
+		
+		
+		try {
+		       settest_list.set(50,"test");
+			   fail("It should throw  index out of bound exception");
+		}
+		catch (IndexOutOfBoundsException e) 
+		{
+		   //  System.out.println("Correct. Index ou of bound was expected");	
+		}
+		
+		
+		settest_list.add("A");
+		settest_list.add("B");
+		settest_list.add("D");
+		
+		System.out.println(settest_list);
+		
+		settest_list.set(2,"C");
+		System.out.println(settest_list);
+		
+		
+		assertEquals("check",settest_list.get(2),"C");
+		
+		
+		try {
+		       settest_list.set(2,null);
+			   fail("It should throw null pointer exception");
+		}
+		catch (NullPointerException e) 
+		{
+		   //  System.out.println("Correct. Index ou of bound was expected");	
+		}
 	    
 	}
 	
