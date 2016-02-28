@@ -19,9 +19,29 @@ public class DictionaryBST implements Dictionary
      * @param word The word to add
      * @return true if the word was added to the dictionary 
      * (it wasn't already there). */
+   
+   
+   public DictionaryBST()
+   {
+	// TODO Auto-generated constructor stub
+	   
+   	
+   	dict = new TreeSet<String>();
+	   
+   }
+   
     public boolean addWord(String word) {
     	// TODO: Implement this method
-        return false;
+
+    	
+    	if(dict.contains(word.toLowerCase()))
+    	{
+    		return false;
+    	}
+    	
+
+    	dict.add(word.toLowerCase());
+        return true;
     }
 
 
@@ -29,13 +49,20 @@ public class DictionaryBST implements Dictionary
     public int size()
     {
     	// TODO: Implement this method
-        return 0;
+    	 return dict.size();
     }
 
     /** Is this a word according to this dictionary? */
     public boolean isWord(String s) {
     	//TODO: Implement this method
+    	
+    	if(dict.contains(s.toLowerCase()))
+    	{
+    		return true;
+    	}
+    	
         return false;
+        
     }
 
 }
